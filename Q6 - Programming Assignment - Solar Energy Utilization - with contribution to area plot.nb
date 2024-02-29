@@ -1,0 +1,1238 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     45125,       1229]
+NotebookOptionsPosition[     44721,       1211]
+NotebookOutlinePosition[     45064,       1226]
+CellTagsIndexPosition[     45021,       1223]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"tMin", "=", "70"}], ";", 
+     RowBox[{"tPrimeMin", "=", "tMin"}], ";", 
+     RowBox[{"ac", "=", 
+      RowBox[{
+      "Input", "[", 
+       "\"\<Please input the area of the collector in meters squared.\>\"", 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"\[Epsilon]L", "=", ".7"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"mDotCpMin", "=", 
+      RowBox[{"3400", "*", "31", "*", "12", "*", "3600"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"cL", "=", 
+      RowBox[{"\[Epsilon]L", " ", "mDotCpMin"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"d", "=", 
+      RowBox[{"15000", "*", "31", "*", "12", "*", "3600"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ms", "=", "100"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"cp", "=", "4190"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"h", "=", 
+      RowBox[{"-", "4.002"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"k", "=", "4.702"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"tenv", "=", "21"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"uas", "=", "6"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"deltat", "=", 
+      RowBox[{"31", "*", "12", "*", "3600"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"b", "=", "3.85"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"c", "=", 
+      RowBox[{"-", "0.15"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"dd", "=", 
+      RowBox[{"-", "1.959"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"frPrimeUc", "=", "3.5"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"hBar", "=", 
+      RowBox[{"19.16", "*", "1000000"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"frPrime\[Tau]\[Alpha]Bar", "=", 
+      RowBox[{"0.72", "*", "0.94"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"n", "=", "31"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"kT", "=", "0.480"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"capitalA", "=", 
+      RowBox[{"7.10", "-", 
+       RowBox[{"20.00", "kT"}], "+", 
+       RowBox[{"12.08", 
+        SuperscriptBox["kT", "2"]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"capitalB", "=", 
+      RowBox[{
+       RowBox[{"-", "8.02"}], "+", 
+       RowBox[{"18.16", "kT"}], "-", 
+       RowBox[{"10.68", 
+        SuperscriptBox["kT", "2"]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"capitalC", "=", 
+      RowBox[{
+       RowBox[{"-", "1.02"}], "+", 
+       RowBox[{"4.10", "kT"}], "-", 
+       RowBox[{"1.96", 
+        SuperscriptBox["kT", "2"]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"hdbyh", "=", 
+      RowBox[{"1.317", "-", 
+       RowBox[{"3.023", "kT"}], "+", 
+       RowBox[{"3.372", 
+        SuperscriptBox["kT", "2"]}], "-", 
+       RowBox[{"1.769", 
+        SuperscriptBox["kT", "3"]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"frPrime\[Tau]\[Alpha]n", "=", "0.72"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\[Rho]g", "=", "0.2"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"s", "=", "39.8"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"ll", "=", "39.8"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"tambPrime", "=", "16.8"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"z", "=", 
+      RowBox[{"d", "/", "cL"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"\[Delta]", "=", 
+      RowBox[{"23.45", 
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         FractionBox["360", "365"], 
+         RowBox[{"(", 
+          RowBox[{"284", "+", "135"}], ")"}], " ", "Degree"}], "]"}]}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"a", "=", 
+      RowBox[{"0.015", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"(", 
+           RowBox[{"ms", "*", 
+            FractionBox["cp", "1000"]}], ")"}], "350"], ")"}], 
+        RowBox[{"-", "0.76"}]]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"g", "=", 
+      RowBox[{"0.2136", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"ms", "*", 
+           FractionBox["cp", "1000"]}], "350"], ")"}], 
+        RowBox[{"-", "0.704"}]]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"f1", "=", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Epsilon]L", " ", 
+          RowBox[{"(", "mDotCpMin", ")"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"tPrimeMin", "-", "tMin"}], ")"}]}], "d"]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"x", "=", 
+      RowBox[{"ac", " ", "frPrimeUc", " ", 
+       RowBox[{"(", 
+        FractionBox["deltat", "d"], ")"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"qu", "=", 
+      RowBox[{"qMax", "-", 
+       RowBox[{"a", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Exp", "[", 
+           RowBox[{"b", " ", "f1"}], "]"}], " ", "-", "1"}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"c", " ", "x"}], "]"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"dd", " ", "z"}], "]"}], ")"}], "*", "d"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"hs", "=", 
+      RowBox[{"ArcCos", "[", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Tan", "[", 
+          RowBox[{"ll", " ", "Degree"}], "]"}]}], 
+        RowBox[{"Tan", "[", 
+         RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"smallrdn", "=", 
+      RowBox[{
+       FractionBox["Pi", "24"], 
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"1", "-", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}]}], 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}], "-", 
+          RowBox[{
+           RowBox[{"(", 
+            FractionBox["Pi", "180"], ")"}], "hs", " ", "Degree", " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"hs", " ", "Degree"}], "]"}]}]}]], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"smallrn", "=", 
+      RowBox[{"smallrdn", 
+       RowBox[{"(", 
+        RowBox[{"1.07", "+", 
+         RowBox[{".025", 
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"hs", " ", "Degree"}], "-", 
+            RowBox[{"60", " ", "Degree"}]}], "]"}]}]}], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rB", "=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"r", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "hdbyh"}], ")"}], "rB"}], "+", 
+       RowBox[{"hdbyh", 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "+", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+       RowBox[{"\[Rho]g", 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "-", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rBn", "=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rn", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{
+           FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}]}], ")"}], 
+        "rBn"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}], ")"}], 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "+", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+       RowBox[{"\[Rho]g", 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "-", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"xcMin", "=", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"smallrn", " ", "rn", " ", "hBar"}]], 
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"frPrimeUc", 
+          RowBox[{"(", 
+           RowBox[{"tPrimeMin", "-", "tambPrime"}], ")"}]}], 
+         "frPrime\[Tau]\[Alpha]Bar"], ")"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"\[Phi]Max", "=", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"capitalA", "+", 
+          RowBox[{"capitalB", 
+           RowBox[{"(", 
+            FractionBox["rn", "r"], ")"}]}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"xcMin", " ", "+", " ", 
+          RowBox[{"capitalC", " ", 
+           SuperscriptBox["xcMin", "2"]}]}], ")"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"htBar", "=", 
+      RowBox[{"r", " ", "hBar"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"qMax", "=", 
+      RowBox[{
+      "ac", " ", "frPrime\[Tau]\[Alpha]Bar", " ", "htBar", " ", "n", " ", 
+       "\[Phi]Max"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"f2", "=", 
+      RowBox[{
+       FractionBox["1", "d"], 
+       RowBox[{"(", 
+        RowBox[{"qu", " ", "-", 
+         RowBox[{"uas", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"tPrimeMin", "+", 
+              RowBox[{"g", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"Exp", "[", 
+                  RowBox[{"k", " ", "f1"}], "]"}], "-", "1"}], ")"}], 
+               RowBox[{"Exp", "[", 
+                RowBox[{"h", " ", 
+                 RowBox[{"d", "/", "cL"}]}], "]"}]}]}], ")"}], "-", "tenv"}], 
+           ")"}], "deltat"}]}], ")"}]}]}]}], ",", 
+    RowBox[{
+     RowBox[{"Abs", "[", 
+      RowBox[{"f1", "-", "f2"}], "]"}], ">", "0.001"}], ",", 
+    RowBox[{
+     RowBox[{"tPrimeMin", "=", 
+      RowBox[{"tPrimeMin", "+", ".001"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"f1", "=", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Epsilon]L", " ", 
+          RowBox[{"(", "mDotCpMin", ")"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"tPrimeMin", "-", "tMin"}], ")"}]}], "d"]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"x", "=", 
+      RowBox[{"ac", " ", "frPrimeUc", " ", 
+       RowBox[{"(", 
+        FractionBox["deltat", "d"], ")"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"qu", "=", 
+      RowBox[{"qMax", "-", 
+       RowBox[{"a", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Exp", "[", 
+           RowBox[{"b", " ", "f1"}], "]"}], " ", "-", "1"}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"Exp", "[", 
+           RowBox[{"c", " ", "x"}], "]"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"dd", " ", "z"}], "]"}], ")"}], "*", "d"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"hs", "=", 
+      RowBox[{"ArcCos", "[", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Tan", "[", 
+          RowBox[{"ll", " ", "Degree"}], "]"}]}], 
+        RowBox[{"Tan", "[", 
+         RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"smallrdn", "=", 
+      RowBox[{
+       FractionBox["Pi", "24"], 
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"1", "-", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}]}], 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}], "-", 
+          RowBox[{
+           RowBox[{"(", 
+            FractionBox["Pi", "180"], ")"}], "hs", " ", "Degree", " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"hs", " ", "Degree"}], "]"}]}]}]], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"smallrn", "=", 
+      RowBox[{"smallrdn", 
+       RowBox[{"(", 
+        RowBox[{"1.07", "+", 
+         RowBox[{".025", 
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"hs", " ", "Degree"}], "-", 
+            RowBox[{"60", " ", "Degree"}]}], "]"}]}]}], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rB", "=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"r", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "hdbyh"}], ")"}], "rB"}], "+", 
+       RowBox[{"hdbyh", 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "+", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+       RowBox[{"\[Rho]g", 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "-", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rBn", "=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Cos", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Cos", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+         RowBox[{
+          RowBox[{"Sin", "[", 
+           RowBox[{"ll", " ", "Degree"}], "]"}], 
+          RowBox[{"Sin", "[", 
+           RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rn", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{
+           FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}]}], ")"}], 
+        "rBn"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}], ")"}], 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "+", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+       RowBox[{"\[Rho]g", 
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"1", "-", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"xcMin", "=", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"smallrn", " ", "rn", " ", "hBar"}]], 
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"frPrimeUc", 
+          RowBox[{"(", 
+           RowBox[{"tPrimeMin", "-", "tambPrime"}], ")"}]}], 
+         "frPrime\[Tau]\[Alpha]Bar"], ")"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"\[Phi]Max", "=", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"capitalA", "+", 
+          RowBox[{"capitalB", 
+           RowBox[{"(", 
+            FractionBox["rn", "r"], ")"}]}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"xcMin", " ", "+", " ", 
+          RowBox[{"capitalC", " ", 
+           SuperscriptBox["xcMin", "2"]}]}], ")"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"htBar", "=", 
+      RowBox[{"r", " ", "hBar"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"qMax", "=", 
+      RowBox[{
+      "ac", " ", "frPrime\[Tau]\[Alpha]Bar", " ", "htBar", " ", "n", " ", 
+       "\[Phi]Max"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"f2", "=", 
+      RowBox[{
+       FractionBox["1", "d"], 
+       RowBox[{"(", 
+        RowBox[{"qu", " ", "-", 
+         RowBox[{"uas", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"tPrimeMin", "+", 
+              RowBox[{"g", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"Exp", "[", 
+                  RowBox[{"k", " ", "f1"}], "]"}], "-", "1"}], ")"}], 
+               RowBox[{"Exp", "[", 
+                RowBox[{"h", " ", 
+                 RowBox[{"d", "/", "cL"}]}], "]"}]}]}], ")"}], "-", "tenv"}], 
+           ")"}], "deltat"}]}], ")"}]}]}]}], ",", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["c", "ac"], "=", "f2"}], ";"}]}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQA2IQ3SLXG8Mz87WjygPzRBBtcH5+Oog+sJ8/C0Rz8F/K
+A9HfnjmUg+hKr7oaEH1uh1ALiO46LtEJov8tLgLT5/K45oDod7tUFoHV/81e
+AaI53ZPXgegFf822g2hTw+x9IPr97CPHQfScvW/PgOgnWtuegugb/FqfQPQP
+zs3fQTSDSu9fEO3+/SorL5B+Pn0BD4hWjeoVAtHdO9plQXTFit+KIPqC30FN
+ED35bq4xiD5lLG8Kon3kA2xBNJfEBDCt9uLwTwWQ/GYvZkUgnRNfxK8EpBfu
+LgXTQtMSxEC0jlMqmOZLMm+yANKvWqzAtPzGiD+XgXRf5iSWK0DaS6CLF0QL
+600RA9EAt1CoIA==
+  "]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.704528825654269*^9, 3.704528834829794*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"ac", "=", "10"}], ",", 
+    RowBox[{"ac", "\[LessEqual]", "100"}], ",", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"tMin", "=", "70"}], ";", 
+        RowBox[{"tPrimeMin", "=", "tMin"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"\[Epsilon]L", "=", ".7"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"mDotCpMin", "=", 
+         RowBox[{"3400", "*", "31", "*", "12", "*", "3600"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"cL", "=", 
+         RowBox[{"\[Epsilon]L", " ", "mDotCpMin"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"d", "=", 
+         RowBox[{"15000", "*", "31", "*", "12", "*", "3600"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ms", "=", "100"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"cp", "=", "4190"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"h", "=", 
+         RowBox[{"-", "4.002"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"k", "=", "4.702"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"tenv", "=", "21"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"uas", "=", "6"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"deltat", "=", 
+         RowBox[{"31", "*", "12", "*", "3600"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"b", "=", "3.85"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"c", "=", 
+         RowBox[{"-", "0.15"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"dd", "=", 
+         RowBox[{"-", "1.959"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"frPrimeUc", "=", "3.5"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"hBar", "=", 
+         RowBox[{"19.16", "*", "1000000"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"frPrime\[Tau]\[Alpha]Bar", "=", 
+         RowBox[{"0.72", "*", "0.94"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"n", "=", "31"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"kT", "=", "0.480"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"capitalA", "=", 
+         RowBox[{"7.10", "-", 
+          RowBox[{"20.00", "kT"}], "+", 
+          RowBox[{"12.08", 
+           SuperscriptBox["kT", "2"]}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"capitalB", "=", 
+         RowBox[{
+          RowBox[{"-", "8.02"}], "+", 
+          RowBox[{"18.16", "kT"}], "-", 
+          RowBox[{"10.68", 
+           SuperscriptBox["kT", "2"]}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"capitalC", "=", 
+         RowBox[{
+          RowBox[{"-", "1.02"}], "+", 
+          RowBox[{"4.10", "kT"}], "-", 
+          RowBox[{"1.96", 
+           SuperscriptBox["kT", "2"]}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"hdbyh", "=", 
+         RowBox[{"1.317", "-", 
+          RowBox[{"3.023", "kT"}], "+", 
+          RowBox[{"3.372", 
+           SuperscriptBox["kT", "2"]}], "-", 
+          RowBox[{"1.769", 
+           SuperscriptBox["kT", "3"]}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"frPrime\[Tau]\[Alpha]n", "=", "0.72"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Rho]g", "=", "0.2"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"s", "=", "39.8"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ll", "=", "39.8"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"tambPrime", "=", "16.8"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"z", "=", 
+         RowBox[{"d", "/", "cL"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"\[Delta]", "=", 
+         RowBox[{"23.45", 
+          RowBox[{"Sin", "[", 
+           RowBox[{
+            FractionBox["360", "365"], 
+            RowBox[{"(", 
+             RowBox[{"284", "+", "135"}], ")"}], " ", "Degree"}], "]"}]}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"a", "=", 
+         RowBox[{"0.015", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"(", 
+              RowBox[{"ms", "*", 
+               FractionBox["cp", "1000"]}], ")"}], "350"], ")"}], 
+           RowBox[{"-", "0.76"}]]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"g", "=", 
+         RowBox[{"0.2136", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"ms", "*", 
+              FractionBox["cp", "1000"]}], "350"], ")"}], 
+           RowBox[{"-", "0.704"}]]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"f1", "=", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"\[Epsilon]L", " ", 
+             RowBox[{"(", "mDotCpMin", ")"}]}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"tPrimeMin", "-", "tMin"}], ")"}]}], "d"]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"x", "=", 
+         RowBox[{"ac", " ", "frPrimeUc", " ", 
+          RowBox[{"(", 
+           FractionBox["deltat", "d"], ")"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"qu", "=", 
+         RowBox[{"qMax", "-", 
+          RowBox[{"a", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Exp", "[", 
+              RowBox[{"b", " ", "f1"}], "]"}], " ", "-", "1"}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             RowBox[{"Exp", "[", 
+              RowBox[{"c", " ", "x"}], "]"}]}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"Exp", "[", 
+             RowBox[{"dd", " ", "z"}], "]"}], ")"}], "*", "d"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"hs", "=", 
+         RowBox[{"ArcCos", "[", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Tan", "[", 
+             RowBox[{"ll", " ", "Degree"}], "]"}]}], 
+           RowBox[{"Tan", "[", 
+            RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"smallrdn", "=", 
+         RowBox[{
+          FractionBox["Pi", "24"], 
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"1", "-", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}]}], 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}], "-", 
+             RowBox[{
+              RowBox[{"(", 
+               FractionBox["Pi", "180"], ")"}], "hs", " ", "Degree", " ", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"hs", " ", "Degree"}], "]"}]}]}]], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"smallrn", "=", 
+         RowBox[{"smallrdn", 
+          RowBox[{"(", 
+           RowBox[{"1.07", "+", 
+            RowBox[{".025", 
+             RowBox[{"Sin", "[", 
+              RowBox[{
+               RowBox[{"hs", " ", "Degree"}], "-", 
+               RowBox[{"60", " ", "Degree"}]}], "]"}]}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rB", "=", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"r", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "-", "hdbyh"}], ")"}], "rB"}], "+", 
+          RowBox[{"hdbyh", 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "+", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+          RowBox[{"\[Rho]g", 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "-", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rBn", "=", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rn", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             RowBox[{
+              FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}]}], ")"}], 
+           "rBn"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}], ")"}], 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "+", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+          RowBox[{"\[Rho]g", 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "-", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"xcMin", "=", 
+         RowBox[{
+          FractionBox["1", 
+           RowBox[{"smallrn", " ", "rn", " ", "hBar"}]], 
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"frPrimeUc", 
+             RowBox[{"(", 
+              RowBox[{"tPrimeMin", "-", "tambPrime"}], ")"}]}], 
+            "frPrime\[Tau]\[Alpha]Bar"], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]Max", "=", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"capitalA", "+", 
+             RowBox[{"capitalB", 
+              RowBox[{"(", 
+               FractionBox["rn", "r"], ")"}]}]}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"xcMin", " ", "+", " ", 
+             RowBox[{"capitalC", " ", 
+              SuperscriptBox["xcMin", "2"]}]}], ")"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"htBar", "=", 
+         RowBox[{"r", " ", "hBar"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"qMax", "=", 
+         RowBox[{
+         "ac", " ", "frPrime\[Tau]\[Alpha]Bar", " ", "htBar", " ", "n", " ", 
+          "\[Phi]Max"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"f2", "=", 
+         RowBox[{
+          FractionBox["1", "d"], 
+          RowBox[{"(", 
+           RowBox[{"qu", " ", "-", 
+            RowBox[{"uas", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tPrimeMin", "+", 
+                 RowBox[{"g", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{"k", " ", "f1"}], "]"}], "-", "1"}], ")"}], 
+                  RowBox[{"Exp", "[", 
+                   RowBox[{"h", " ", 
+                    RowBox[{"d", "/", "cL"}]}], "]"}]}]}], ")"}], "-", 
+               "tenv"}], ")"}], "deltat"}]}], ")"}]}]}]}], ",", 
+       RowBox[{
+        RowBox[{"Abs", "[", 
+         RowBox[{"f1", "-", "f2"}], "]"}], ">", "0.001"}], ",", 
+       RowBox[{
+        RowBox[{"tPrimeMin", "=", 
+         RowBox[{"tPrimeMin", "+", ".001"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"f1", "=", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"\[Epsilon]L", " ", 
+             RowBox[{"(", "mDotCpMin", ")"}]}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"tPrimeMin", "-", "tMin"}], ")"}]}], "d"]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"x", "=", 
+         RowBox[{"ac", " ", "frPrimeUc", " ", 
+          RowBox[{"(", 
+           FractionBox["deltat", "d"], ")"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"qu", "=", 
+         RowBox[{"qMax", "-", 
+          RowBox[{"a", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Exp", "[", 
+              RowBox[{"b", " ", "f1"}], "]"}], " ", "-", "1"}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             RowBox[{"Exp", "[", 
+              RowBox[{"c", " ", "x"}], "]"}]}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"Exp", "[", 
+             RowBox[{"dd", " ", "z"}], "]"}], ")"}], "*", "d"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"hs", "=", 
+         RowBox[{"ArcCos", "[", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"Tan", "[", 
+             RowBox[{"ll", " ", "Degree"}], "]"}]}], 
+           RowBox[{"Tan", "[", 
+            RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"smallrdn", "=", 
+         RowBox[{
+          FractionBox["Pi", "24"], 
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"1", "-", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}]}], 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}], "-", 
+             RowBox[{
+              RowBox[{"(", 
+               FractionBox["Pi", "180"], ")"}], "hs", " ", "Degree", " ", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"hs", " ", "Degree"}], "]"}]}]}]], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"smallrn", "=", 
+         RowBox[{"smallrdn", 
+          RowBox[{"(", 
+           RowBox[{"1.07", "+", 
+            RowBox[{".025", 
+             RowBox[{"Sin", "[", 
+              RowBox[{
+               RowBox[{"hs", " ", "Degree"}], "-", 
+               RowBox[{"60", " ", "Degree"}]}], "]"}]}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rB", "=", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"hs", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"r", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "-", "hdbyh"}], ")"}], "rB"}], "+", 
+          RowBox[{"hdbyh", 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "+", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+          RowBox[{"\[Rho]g", 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "-", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rBn", "=", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"ll", "-", "s"}], ")"}], " ", "Degree"}], "]"}], "*", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"ll", " ", "Degree"}], "]"}], 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Delta]", " ", "Degree"}], "]"}]}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rn", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "-", 
+             RowBox[{
+              FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}]}], ")"}], 
+           "rBn"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             FractionBox["smallrdn", "smallrn"], "*", "hdbyh"}], ")"}], 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "+", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}], "+", 
+          RowBox[{"\[Rho]g", 
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"1", "-", 
+              RowBox[{"Cos", "[", 
+               RowBox[{"s", " ", "Degree"}], "]"}]}], "2"], ")"}]}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"xcMin", "=", 
+         RowBox[{
+          FractionBox["1", 
+           RowBox[{"smallrn", " ", "rn", " ", "hBar"}]], 
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"frPrimeUc", 
+             RowBox[{"(", 
+              RowBox[{"tPrimeMin", "-", "tambPrime"}], ")"}]}], 
+            "frPrime\[Tau]\[Alpha]Bar"], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\[Phi]Max", "=", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"capitalA", "+", 
+             RowBox[{"capitalB", 
+              RowBox[{"(", 
+               FractionBox["rn", "r"], ")"}]}]}], ")"}], 
+           RowBox[{"(", 
+            RowBox[{"xcMin", " ", "+", " ", 
+             RowBox[{"capitalC", " ", 
+              SuperscriptBox["xcMin", "2"]}]}], ")"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"htBar", "=", 
+         RowBox[{"r", " ", "hBar"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"qMax", "=", 
+         RowBox[{
+         "ac", " ", "frPrime\[Tau]\[Alpha]Bar", " ", "htBar", " ", "n", " ", 
+          "\[Phi]Max"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"f2", "=", 
+         RowBox[{
+          FractionBox["1", "d"], 
+          RowBox[{"(", 
+           RowBox[{"qu", " ", "-", 
+            RowBox[{"uas", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tPrimeMin", "+", 
+                 RowBox[{"g", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{"k", " ", "f1"}], "]"}], "-", "1"}], ")"}], 
+                  RowBox[{"Exp", "[", 
+                   RowBox[{"h", " ", 
+                    RowBox[{"d", "/", "cL"}]}], "]"}]}]}], ")"}], "-", 
+               "tenv"}], ")"}], "deltat"}]}], ")"}]}]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["c", "ac"], "=", "f2"}], ";"}]}], "]"}], ";", 
+     RowBox[{"ac", "=", 
+      RowBox[{"ac", "+", "10"}]}]}], ",", 
+    RowBox[{"{", "}"}]}], "]"}], ";", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"10", ",", 
+       SubscriptBox["c", "10"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"20", ",", 
+       SubscriptBox["c", "20"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"30", ",", 
+       SubscriptBox["c", "30"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"40", ",", 
+       SubscriptBox["c", "40"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"50", ",", 
+       SubscriptBox["c", "50"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"60", ",", 
+       SubscriptBox["c", "60"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"70", ",", 
+       SubscriptBox["c", "70"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"80", ",", 
+       SubscriptBox["c", "80"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"90", ",", 
+       SubscriptBox["c", "90"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"100", ",", 
+       SubscriptBox["c", "100"]}], "}"}]}], "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7045290963257513`*^9, 3.704529141447332*^9}, {
+  3.7045291722880955`*^9, 3.7045291931852913`*^9}, {3.7045292498215303`*^9, 
+  3.704529253376734*^9}, {3.704529320011545*^9, 3.704529391863655*^9}, {
+  3.7045294486929054`*^9, 3.704529452537125*^9}, {3.7045295032050233`*^9, 
+  3.704529553188882*^9}, {3.704529599150511*^9, 3.7045296742408056`*^9}, {
+  3.7045297578605886`*^9, 3.7045297585036254`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.019444444444444445`],
+      AbsoluteThickness[1.6], 
+     LineBox[{{10., 0.17398046536106368`}, {20., 0.36742352565618164`}, {30., 
+      0.5607807904373832}, {40., 0.7540528098094812}, {50., 
+      0.9472396981629632}, {60., 1.1403409576039938`}, {70., 
+      1.3333565931217335`}, {80., 1.5262872849615263`}, {90., 
+      1.7191331233492326`}, {100., 1.9118934147781756`}}]}}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{},
+  PlotRange->{{0, 100.}, {0, 1.9118934147781756`}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.704529562636422*^9, 3.7045296118082347`*^9, 
+  3.704529684174374*^9, 3.7045297691412334`*^9, 3.70452986103749*^9}]
+}, Open  ]]
+},
+WindowSize->{1366, 696},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.2 for Microsoft Windows (64-bit) (July 29, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 20034, 557, 1751, "Input"],
+Cell[20595, 579, 92, 1, 31, "Input"],
+Cell[CellGroupData[{
+Cell[20712, 584, 22734, 592, 1758, "Input"],
+Cell[43449, 1178, 1256, 30, 279, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
